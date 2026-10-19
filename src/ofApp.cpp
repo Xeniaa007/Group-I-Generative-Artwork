@@ -3,7 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup() {
     ofRectangle rect(0, 0, 800, 1200);
-    ofBeginSaveScreenAsSVG("topografia_generativa.svg", false, false, rect);
+    ofBeginSaveScreenAsSVG("WATER.svg", false, false, rect);
 
     ofBackground(35, 198, 212);
 
