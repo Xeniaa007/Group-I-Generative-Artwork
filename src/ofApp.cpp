@@ -5,37 +5,29 @@ void ofApp::setup() {
     ofRectangle rect(0, 0, 800, 1200);
     ofBeginSaveScreenAsSVG("topografia_generativa.svg", false, false, rect);
 
-    // 1. Color de fondo solicitado: #23c6d4 -> RGB(35, 198, 212)
     ofBackground(35, 198, 212);
 
     ofNoFill();
     ofSetLineWidth(1.5);
 
-    // Coordenadas de los centros u "focos" de las ondas
     int centrosX[] = { 300, 500, 250, 550, 400 };
     int centrosY[] = { 200, 450, 750, 900, 1050 };
     int numCentros = 5;
 
-    // Definimos los 3 colores solicitados para las líneas en un arreglo de ofColor:
-    // 1. #e0fcfc -> RGB(224, 252, 252)
-    // 2. #459f9f -> RGB(69, 159, 159)
-    // 3. #1b6969 -> RGB(27, 105, 105)
-    ofColor paletaColores[3] = {
-        ofColor(224, 252, 252),
-        ofColor(69, 159, 159),
-        ofColor(27, 105, 105)
+        ofColor paletaColores[3] = {
+        ofColor(224, 252, 252), // #e0fcfc
+        ofColor(69, 159, 159),  // #459f9f
+        ofColor(27, 105, 105)   // #1b6969
     };
 
-    // Bucle anidado para generar líneas concéntricas u onduladas alrededor de cada centro
     for (int c = 0; c < numCentros; c++) {
         float cx = centrosX[c];
         float cy = centrosY[c];
 
-        int contadorAnillo = 0; // Para alternar los colores de la paleta en cada anillo
+        int contadorAnillo = 0;
 
         for (int r = 20; r < 350; r += 15) {
 
-            // Asignamos una tonalidad diferente de la paleta según el índice del anillo
             ofSetColor(paletaColores[contadorAnillo % 3]);
             contadorAnillo++;
 
@@ -57,6 +49,16 @@ void ofApp::setup() {
         }
     }
 
+    ofSetColor(255);
+
+    for (int i = 0; i < 200; i++) {
+        float gotaX = ofRandom(0, 800);
+        float gotaY = ofRandom(0, 1200);
+        float radioGota = ofRandom(1.0, 3.5); 
+
+        ofDrawCircle(gotaX, gotaY, radioGota);
+    }
+
     ofEndSaveScreenAsSVG();
 }
 
@@ -70,7 +72,6 @@ void ofApp::draw() {
 
 }
 
-//--------------------------------------------------------------
 void ofApp::keyPressed(int key) {}
 void ofApp::keyReleased(int key) {}
 void ofApp::mouseMoved(int x, int y) {}
